@@ -153,7 +153,7 @@ class Site extends Core implements CoreInterface {
 	/**
 	 * Switches to the blog requested in the request
 	 *
-	 * @param string|integer|null $site_name_or_id
+	 * @param string|int|null $site_name_or_id
 	 * @return integer with the ID of the new blog
 	 */
 	protected static function switch_to_blog( $site_name_or_id ) {
@@ -167,7 +167,7 @@ class Site extends Core implements CoreInterface {
 
 	/**
 	 * @internal
-	 * @param integer $site_id
+	 * @param int $site_id
 	 */
 	protected function init_as_multisite( $site_id ) {
 		$info = get_blog_details($site_id);
@@ -234,7 +234,7 @@ class Site extends Core implements CoreInterface {
 	 *
 	 * @return mixed The option value.
 	 */
-	public function __get( $option ) {
+	public function __get( string $option ) {
 		if ( ! isset( $this->$option ) ) {
 			if ( is_multisite() ) {
 				$this->$option = get_blog_option( $this->ID, $option );
@@ -330,7 +330,7 @@ class Site extends Core implements CoreInterface {
 	 * @param string $key   The key of the site option to update.
 	 * @param mixed  $value The new value.
 	 */
-	public function update( $key, $value ) {
+	public function update( string $key, $value ) {
 		Helper::deprecated( 'Timber\Site::update()', 'update_option()', '2.0.0' );
 
 		/**

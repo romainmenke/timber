@@ -25,12 +25,12 @@ class Helper {
 	 *
 	 * @param string  	$slug           Unique identifier for transient
 	 * @param callable 	$callback      Callback that generates the data that's to be cached
-	 * @param integer  	$transient_time (optional) Expiration of transients in seconds
-	 * @param integer 	$lock_timeout   (optional) How long (in seconds) to lock the transient to prevent race conditions
-	 * @param boolean 	$force          (optional) Force callback to be executed when transient is locked
+	 * @param int  	$transient_time (optional) Expiration of transients in seconds
+	 * @param int 	$lock_timeout   (optional) How long (in seconds) to lock the transient to prevent race conditions
+	 * @param bool 	$force          (optional) Force callback to be executed when transient is locked
 	 * @return mixed
 	 */
-	public static function transient( $slug, $callback, $transient_time = 0, $lock_timeout = 5, $force = false ) {
+	public static function transient( string $slug, callable $callback, $transient_time = 0, $lock_timeout = 5, $force = false ) {
 		/**
 		 * Filters the transient slug.
 		 *
@@ -58,12 +58,12 @@ class Helper {
 	 *
 	 * @param string 	$slug
 	 * @param callable 	$callback
-	 * @param integer  	$transient_time Expiration of transients in seconds
-	 * @param integer 	$lock_timeout   How long (in seconds) to lock the transient to prevent race conditions
-	 * @param boolean 	$force          Force callback to be executed when transient is locked
-	 * @param boolean 	$enable_transients Force callback to be executed when transient is locked
+	 * @param int  	$transient_time Expiration of transients in seconds
+	 * @param int 	$lock_timeout   How long (in seconds) to lock the transient to prevent race conditions
+	 * @param bool 	$force          Force callback to be executed when transient is locked
+	 * @param bool 	$enable_transients Force callback to be executed when transient is locked
 	 */
-	protected static function handle_transient_locking( $slug, $callback, $transient_time, $lock_timeout, $force, $enable_transients ) {
+	protected static function handle_transient_locking( string $slug, callable $callback, $transient_time, $lock_timeout, $force, $enable_transients ) {
 		if ( $enable_transients && self::_is_transient_locked($slug) ) {
 
 			/**
@@ -136,7 +136,7 @@ class Helper {
 	/**
 	 * @internal
 	 * @param string $slug
-	 * @param integer $lock_timeout
+	 * @param int $lock_timeout
 	 */
 	public static function _lock_transient( $slug, $lock_timeout ) {
 		set_transient($slug.'_lock', true, $lock_timeout);

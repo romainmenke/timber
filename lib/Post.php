@@ -199,7 +199,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 *
 	 * @return mixed
 	 */
-	public function __get( $field ) {
+	public function __get( string $field ) {
 		if ( 'class' === $field ) {
 			return $this->css_class();
 		}
@@ -225,7 +225,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 *
 	 * @return mixed
 	 */
-	public function __call( $field, $args ) {
+	public function __call( string $field, array $args ) {
 		if ( 'class' === $field ) {
 			$class = isset($args[0]) ? $args[0] : '';
 			return $this->css_class($class);
@@ -389,7 +389,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	/**
 	 * Initializes a Post
 	 * @internal
-	 * @param integer $pid
+	 * @param int $pid
 	 */
 	protected function init( $pid = null ) {
 		if ( $pid === null ) {
@@ -410,7 +410,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * @param string $field The key of the meta field to update.
 	 * @param mixed  $value The new value.
 	 */
-	public function update( $field, $value ) {
+	public function update( string $field, $value ) {
 		Helper::deprecated( 'Timber\Post::update()', 'update_post_meta()', '2.0.0' );
 
 		if ( isset($this->ID) ) {
@@ -424,7 +424,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * takes a mix of integer (post ID), string (post slug),
 	 * or object to return a WordPress post object from WP's built-in get_post() function
 	 * @internal
-	 * @param integer $pid
+	 * @param int $pid
 	 * @return WP_Post on success
 	 */
 	protected function prepare_post_info( $pid = 0 ) {
@@ -444,7 +444,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * Helps you find the post id regardless of whether you send a string or whatever.
 	 *
 	 * @internal
-	 * @param integer $pid number to check against.
+	 * @param int $pid number to check against.
 	 * @return integer ID number of a post
 	 */
 	protected static function check_post_id( $pid ) {
@@ -559,7 +559,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * Used internally by init, etc. to build Timber\Post object.
 	 *
 	 * @internal
-	 * @param  int|null|boolean $pid The ID to generate info from.
+	 * @param  int|null|bool $pid The ID to generate info from.
 	 * @return null|object|WP_Post|boolean
 	 */
 	protected function get_info( $pid = null ) {
@@ -817,7 +817,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * @return mixed The custom field value or an array of custom field values. Null if no value
 	 *               could be found.
 	 */
-	public function meta( $field_name = '', $args = array() ) {
+	public function meta( string $field_name = '', array $args = array() ) {
 		$args = wp_parse_args( $args, [
 			'apply_filters' => true,
 		] );
@@ -1004,7 +1004,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * @return null|mixed The meta field value(s). Null if no value could be found, an empty array
 	 *                    if all fields were requested but no values could be found.
 	 */
-	public function raw_meta( $field_name = '', $args = array() ) {
+	public function raw_meta( string $field_name = '', array $args = array() ) {
 		return $this->meta( $field_name, array_merge(
 			$args,
 			[
@@ -1023,7 +1023,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * @param string $field_name The field name for which you want to get the value.
 	 * @return mixed The meta field value.
 	 */
-	public function get_field( $field_name = null ) {
+	public function get_field( string $field_name = null ) {
 		Helper::deprecated(
 			"{{ post.get_field('field_name') }}",
 			"{{ post.meta('field_name') }}",
@@ -1737,7 +1737,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * <h3>{{post.prev.title}}</h3>
 	 * <p>{{post.prev.preview(25)}}</p>
 	 * ```
-	 * @param string|boolean $in_same_term
+	 * @param string|bool $in_same_term
 	 * @return mixed
 	 */
 	public function prev( $in_same_term = false ) {
