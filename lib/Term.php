@@ -328,7 +328,7 @@ class Term extends Core implements CoreInterface, MetaInterface {
 	 * @return mixed The custom field value or an array of custom field values. Null if no value
 	 *               could be found.
 	 */
-	public function meta( $field_name = '', $args = array() ) {
+	public function meta( string $field_name = '', array $args = array() ) {
 		$args = wp_parse_args( $args, [
 			'apply_filters' => true,
 		] );
@@ -481,7 +481,7 @@ class Term extends Core implements CoreInterface, MetaInterface {
 	 * @return null|mixed The custom field value(s). Null if no value could be found, an empty array
 	 *                    if all fields were requested but no values could be found.
 	 */
-	public function raw_meta( $field_name = '', $args = array() ) {
+	public function raw_meta( string $field_name = '', array $args = array() ) {
 		return $this->meta( $field_name, array_merge(
 			$args,
 			[
@@ -500,7 +500,7 @@ class Term extends Core implements CoreInterface, MetaInterface {
 	 * @param string $field_name The field name for which you want to get the value.
 	 * @return mixed The meta field value.
 	 */
-	public function get_field( $field_name = null ) {
+	public function get_field( string $field_name = null ) {
 		Helper::deprecated(
 			"{{ term.get_field('field_name') }}",
 			"{{ term.meta('field_name') }}",
@@ -693,7 +693,7 @@ class Term extends Core implements CoreInterface, MetaInterface {
 	 * @param string $key   The key of the meta field to update.
 	 * @param mixed  $value The new value.
 	 */
-	public function update( $key, $value ) {
+	public function update( string $key, $value ) {
 		Helper::deprecated( 'Timber\Term::update()', 'update_term_meta()', '2.0.0' );
 
 		/**

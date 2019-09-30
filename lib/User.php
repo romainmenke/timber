@@ -182,7 +182,7 @@ class User extends Core implements CoreInterface, MetaInterface {
 	 *                           available in Timber. Default empty.
 	 * @return mixed The meta field value. Null if no value could be found.
 	 */
-	public function meta( $field_name = '', $args = array() ) {
+	public function meta( string $field_name = '', array $args = array() ) {
 		$args = wp_parse_args( $args, [
 			'apply_filters' => true,
 		] );
@@ -331,7 +331,7 @@ class User extends Core implements CoreInterface, MetaInterface {
 	 * @return null|mixed The meta field value(s). Null if no value could be found, an empty array
 	 *                    if all fields were requested but no values could be found.
 	 */
-	public function raw_meta( $field_name = '', $args = array() ) {
+	public function raw_meta( string $field_name = '', array $args = array() ) {
 		return $this->meta( $field_name, array_merge(
 			$args,
 			[
@@ -350,7 +350,7 @@ class User extends Core implements CoreInterface, MetaInterface {
 	 * @param string $field_name The field name for which you want to get the value.
 	 * @return mixed The meta field value.
 	 */
-	public function get_field( $field_name = null ) {
+	public function get_field( string $field_name = null ) {
 		Helper::deprecated(
 			"{{ user.get_field('field_name') }}",
 			"{{ user.meta('field_name') }}",

@@ -64,7 +64,7 @@ class ImageHelper {
 	 *                          force file generation. Default `false`.
 	 * @return string The URL of the resized image.
 	 */
-	public static function resize( string $src, $w, int $h = 0, string $crop = 'default', bool $force = false ) {
+	public static function resize( ?string $src, $w, ?int $h = 0, ?string $crop = 'default', bool $force = false ) {
 		if ( !is_numeric($w) && is_string($w) ) {
 			if ( $sizes = self::find_wp_dimensions($w) ) {
 				$w = $sizes['w'];
@@ -199,7 +199,7 @@ class ImageHelper {
 	 * @param bool    $force
 	 * @return string
 	 */
-	public static function letterbox( string $src, int $w, int $h, string $color = false, bool $force = false ) {
+	public static function letterbox( string $src, int $w, int $h, $color = false, bool $force = false ) {
 		$op = new Operation\Letterbox($w, $h, $color);
 		return self::_operate($src, $op, $force);
 	}
@@ -595,7 +595,7 @@ class ImageHelper {
 	 *                        force file generation. Default `false`.
 	 * @return string URL to the new image - or the source one if error.
 	 */
-	private static function _operate( string $src, $op, bool $force = false ) {
+	private static function _operate( ?string $src, $op, bool $force = false ) {
 		if ( empty($src) ) {
 			return '';
 		}

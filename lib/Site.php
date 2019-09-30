@@ -234,7 +234,7 @@ class Site extends Core implements CoreInterface {
 	 *
 	 * @return mixed The option value.
 	 */
-	public function __get( $option ) {
+	public function __get( string $option ) {
 		if ( ! isset( $this->$option ) ) {
 			if ( is_multisite() ) {
 				$this->$option = get_blog_option( $this->ID, $option );
@@ -330,7 +330,7 @@ class Site extends Core implements CoreInterface {
 	 * @param string $key   The key of the site option to update.
 	 * @param mixed  $value The new value.
 	 */
-	public function update( $key, $value ) {
+	public function update( string $key, $value ) {
 		Helper::deprecated( 'Timber\Site::update()', 'update_option()', '2.0.0' );
 
 		/**

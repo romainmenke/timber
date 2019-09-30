@@ -199,7 +199,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 *
 	 * @return mixed
 	 */
-	public function __get( $field ) {
+	public function __get( string $field ) {
 		if ( 'class' === $field ) {
 			return $this->css_class();
 		}
@@ -225,7 +225,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 *
 	 * @return mixed
 	 */
-	public function __call( $field, $args ) {
+	public function __call( string $field, array $args ) {
 		if ( 'class' === $field ) {
 			$class = isset($args[0]) ? $args[0] : '';
 			return $this->css_class($class);
@@ -410,7 +410,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * @param string $field The key of the meta field to update.
 	 * @param mixed  $value The new value.
 	 */
-	public function update( $field, $value ) {
+	public function update( string $field, $value ) {
 		Helper::deprecated( 'Timber\Post::update()', 'update_post_meta()', '2.0.0' );
 
 		if ( isset($this->ID) ) {
@@ -817,7 +817,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * @return mixed The custom field value or an array of custom field values. Null if no value
 	 *               could be found.
 	 */
-	public function meta( $field_name = '', $args = array() ) {
+	public function meta( string $field_name = '', array $args = array() ) {
 		$args = wp_parse_args( $args, [
 			'apply_filters' => true,
 		] );
@@ -1004,7 +1004,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * @return null|mixed The meta field value(s). Null if no value could be found, an empty array
 	 *                    if all fields were requested but no values could be found.
 	 */
-	public function raw_meta( $field_name = '', $args = array() ) {
+	public function raw_meta( string $field_name = '', array $args = array() ) {
 		return $this->meta( $field_name, array_merge(
 			$args,
 			[
@@ -1023,7 +1023,7 @@ class Post extends Core implements CoreInterface, MetaInterface, Setupable {
 	 * @param string $field_name The field name for which you want to get the value.
 	 * @return mixed The meta field value.
 	 */
-	public function get_field( $field_name = null ) {
+	public function get_field( string $field_name = null ) {
 		Helper::deprecated(
 			"{{ post.get_field('field_name') }}",
 			"{{ post.meta('field_name') }}",
