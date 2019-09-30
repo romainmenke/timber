@@ -30,7 +30,7 @@ class Helper {
 	 * @param bool 	$force          (optional) Force callback to be executed when transient is locked
 	 * @return mixed
 	 */
-	public static function transient( string $slug, callable $callback, int $transient_time = 0, int $lock_timeout = 5, bool $force = false ) {
+	public static function transient( string $slug, callable $callback, $transient_time = 0, $lock_timeout = 5, $force = false ) {
 		/**
 		 * Filters the transient slug.
 		 *
@@ -63,7 +63,7 @@ class Helper {
 	 * @param bool 	$force          Force callback to be executed when transient is locked
 	 * @param bool 	$enable_transients Force callback to be executed when transient is locked
 	 */
-	protected static function handle_transient_locking( string $slug, callable $callback, int $transient_time, int $lock_timeout, bool $force, bool $enable_transients ) {
+	protected static function handle_transient_locking( string $slug, callable $callback, $transient_time, $lock_timeout, $force, $enable_transients ) {
 		if ( $enable_transients && self::_is_transient_locked($slug) ) {
 
 			/**
@@ -138,7 +138,7 @@ class Helper {
 	 * @param string $slug
 	 * @param int $lock_timeout
 	 */
-	public static function _lock_transient( string $slug, int $lock_timeout ) {
+	public static function _lock_transient( $slug, $lock_timeout ) {
 		set_transient($slug.'_lock', true, $lock_timeout);
 	}
 
@@ -154,7 +154,7 @@ class Helper {
 	 * @internal
 	 * @param string $slug
 	 */
-	public static function _is_transient_locked( string $slug ) {
+	public static function _is_transient_locked( $slug ) {
 		return (bool) get_transient($slug.'_lock');
 	}
 
@@ -187,7 +187,7 @@ class Helper {
 	 * @param int     $start
 	 * @return string
 	 */
-	public static function stop_timer( int $start ) {
+	public static function stop_timer( $start ) {
 		$time = microtime();
 		$time = explode(' ', $time);
 		$time = $time[1] + $time[0];
@@ -262,7 +262,7 @@ class Helper {
 	 *
 	 * @return void
 	 */
-	public static function warn( string $message ) {
+	public static function warn( $message ) {
 		if ( ! WP_DEBUG ) {
 			return;
 		}
@@ -279,7 +279,7 @@ class Helper {
 	 * @param string $version     When we deprecated this.
 	 * @return void
 	 */
-	public static function deprecated( string $function, string $replacement, string $version ) {
+	public static function deprecated( $function, $replacement, $version ) {
 		if ( ! WP_DEBUG ) {
 			return;
 		}
@@ -320,7 +320,7 @@ class Helper {
 	 * @param string  $seplocation
 	 * @return string
 	 */
-	public static function get_wp_title( string $separator = ' ', string $seplocation = 'left' ) {
+	public static function get_wp_title( $separator = ' ', $seplocation = 'left' ) {
 		/**
 		 * Filters the separator used for the page title.
 		 *
@@ -350,7 +350,7 @@ class Helper {
 	 *
 	 * @return void
 	 */
-	public static function osort( &$array, string $prop ) {
+	public static function osort( &$array, $prop ) {
 		usort($array, function( $a, $b ) use ($prop) {
 			return $a->$prop > $b->$prop ? 1 : -1;
 		} );
