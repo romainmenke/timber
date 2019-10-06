@@ -238,11 +238,8 @@ class Loader {
 	 * @return \Twig\Loader\FilesystemLoader
 	 */
 	public function get_loader() {
-		$open_basedir = ini_get('open_basedir');
-		$paths        = array_merge_recursive(
-			$this->locations,
-			array( self::MAIN_NAMESPACE => array( $open_basedir ? ABSPATH : '/' ) )
-		);
+		$paths = $this->locations;
+
 		/**
 		 * Filters …
 		 *
@@ -254,6 +251,7 @@ class Loader {
 		 */
 		$paths = apply_filters('timber/loader/paths', $paths);
 
+		$open_basedir = ini_get('open_basedir');
 		$rootPath = '/';
 		if ( $open_basedir ) {
 			$rootPath = null;
