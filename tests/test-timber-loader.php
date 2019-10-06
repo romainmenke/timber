@@ -39,6 +39,9 @@
 			$this->assertEquals('Boo!', $str);
 		}
 
+		/**
+		 * @expectedDeprecated  timber/loader/paths
+		 */
 		function testUpdatedTwigPathFilterAdded() {
 			$php_unit = $this;
 			add_filter('timber/loader/paths', function($paths) use ($php_unit) {
