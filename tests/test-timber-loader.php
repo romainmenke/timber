@@ -27,6 +27,7 @@
 		}
 
 		/**
+		 * @expectedDeprecated  timber/loader/paths
 		 * @expectedDeprecated  add_filter( 'timber/loader/paths', ['path/to/my/templates'] ) in a non-associative array
 		 */
 		function testTwigPathFilterAdded() {
@@ -53,6 +54,7 @@
 		}
 
 		/**
+		 * @expectedDeprecated  timber/loader/paths
 		 * @expectedDeprecated  add_filter( 'timber/loader/paths', ['path/to/my/templates'] ) in a non-associative array
 		 */
 		function testTwigPathFilter() {
