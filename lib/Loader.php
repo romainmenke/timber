@@ -241,15 +241,18 @@ class Loader {
 		$paths = $this->locations;
 
 		/**
-		 * Filters …
-		 *
-		 * @todo Add summary, description, example, parameter description
+		 * Filters the template paths used by the Loader.
 		 *
 		 * @since 0.20.10
 		 *
-		 * @param array $paths
+		 * @deprecated 2.0.0, use `timber/locations`
 		 */
-		$paths = apply_filters('timber/loader/paths', $paths);
+		$paths = apply_filters_deprecated(
+			'timber/loader/paths',
+			array( $paths ),
+			'2.0.0',
+			'timber/locations'
+		);
 
 		$open_basedir = ini_get('open_basedir');
 		$rootPath = '/';
